@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FETCHING MUSIC API</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+   .demo-content{
+        padding: 5px;
+        font-size: 18px;
+        background: #dbdfe5;
+        margin-bottom: 15px;
+    }
+    .demo-content.bg-alt{
+        background: #abb1b8;
+    }
+</style>
+</head>
+<body>
+  <h1 style="text-align:center;">FETCHING DATA FROM MUSIC API</h1>
+
+    
+
+    <div class="container">
+      
+      <div class="row">
+          <div class="col-md-4">
+              <div class="demo-content"><div class="m-4">
+                <div class="card" style="width: 300px;" >
+                    <img src="https://lastfm.freetls.fastly.net/i/u/300x300/f84c7c1a7f0040b2ac7e8554ab60e0d4.png" class="card-img-top" alt="Sample Image" id ="image1">
+                    <div class="card-body text-center" class="content1" >
+                        
+                        <p class="card-text" id ="container1"></p>
+                        
+                    </div>
+                </div>
+            </div></div>
+          </div>
+          <div class="col-md-4">
+              <div class="demo-content bg-alt"><div class="m-4">
+                <div class="card" style="width: 300px;">
+                    <img src="https://lastfm.freetls.fastly.net/i/u/300x300/3b54885952161aaea4ce2965b2db1638.png" class="card-img-top" alt="Sample Image">
+                    <div class="card-body text-center" class="content2">
+            <p class="card-text" id ="container2"></p>
+                        
+                    </div>
+                </div>
+            </div></div>
+          </div>
+          <div class="col-md-4">
+            <div class="demo-content bg-alt"> <div class="card" style="width: 300px;">
+              <img src="https://lastfm.freetls.fastly.net/i/u/300x300/28fe29bb838bbbc910b326a37e7018de.png" class="card-img-top" alt="Sample Image">
+              <div class="card-body text-center" class="content3">
+      <p class="card-text" id ="container3"></p>
+                  
+              </div>
+          </div></div>
+        </div>
+      </div>
+      
+      
+      <div class="row">
+        <div class="col-md-4">
+            <div class="demo-content"><div class="demo-content bg-alt"> <div class="card" style="width: 300px;">
+              <img src="https://lastfm.freetls.fastly.net/i/u/300x300/0b094c3f712039f9b83d95a20f4419b4.png" class="card-img-top" alt="Sample Image">
+              <div class="card-body text-center" class="content4">
+      <p class="card-text" id ="container4"></p>
+                  
+              </div>
+          </div></div></div>
+        </div>
+        <div class="col-md-4">
+            <div class="demo-content bg-alt"><div class="demo-content bg-alt"> <div class="card" style="width: 300px;">
+              <img src="https://lastfm.freetls.fastly.net/i/u/300x300/1dbe42fcbdbf3d444d42feb18d76897a.png" class="card-img-top" alt="Sample Image">
+              <div class="card-body text-center" class="content5">
+      <p class="card-text" id ="container5"></p>
+                  
+              </div>
+          </div></div></div>
+        </div>
+        <div class="col-md-4">
+          <div class="demo-content bg-alt"><div class="demo-content bg-alt"> <div class="card" style="width: 300px;">
+            <img src="https://lastfm.freetls.fastly.net/i/u/300x300/78851f1f73d714f213d2d8ca54b773e7.png" class="card-img-top" alt="Sample Image">
+            <div class="card-body text-center" class="content6">
+    <p class="card-text" id ="container6"></p>
+                
+            </div>
+        </div></div></div>
+      </div>
+    </div>
+      
+
+    <div class="col-md-4">
+      <div class="demo-content bg-alt"><div class="demo-content bg-alt"> <div class="card" style="width: 300px;">
+        <img src="https://lastfm.freetls.fastly.net/i/u/300x300/59424e8baf170098d054797bef66ce88.png" class="card-img-top" alt="Sample Image">
+        <div class="card-body text-center" class="content7">
+<p class="card-text" id ="container7"></p>
+            
+        </div>
+    </div></div></div>
+  </div>
+      <!--Row with two columns divided in 1:3 ratio-->
+      
+</body>
+
+<script>
+    const apiKey = 'aea61c096ec9b633546fbe7f3b66e648';
+
+
+const method = 'artist.gettopalbums';
+
+const artist ="cher"
+
+
+const user2 = 'joanofarctan'; 
+
+
+const url = `http://ws.audioscrobbler.com/2.0/?method=${method}&artist=${artist}&api_key=${apiKey}&format=json`;
+fetch(url)
+  .then(response => response.json()) 
+  .then(data => {
+  
+
+ 
+  let card = document.getElementsByClassName('content1');
+
+
+  
+  let container = document.getElementById('container1');
+
+
+  container.textContent = `Artist name : ${data.topalbums.album[21].artist.name},Album Name:${data.topalbums.album[21].name}`;
+
+
+  card.appendChild(container);
+
+ 
+  document.body.appendChild(card);
+})
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+    
+      const apiKey1 = 'aea61c096ec9b633546fbe7f3b66e648';
+
+
+const method1 = 'album.getinfo';
+
+
+const artist1 = 'Cher'; 
+
+const album1 = 'Believe';
+
+
+const url1 = `http://ws.audioscrobbler.com/2.0/?method=${method1}&api_key=${apiKey1}&artist=${artist1}&album=${album1}&format=json`;
+
+// Use fetch API to get data
+fetch(url1)
+  .then(response => response.json()) 
+  .then(data => {
+  
+
+
+  let card = document.getElementsByClassName('content2');
+
+
+
+  let container = document.getElementById('container2');
+
+
+  
+  container.textContent = `Artist Name: ${data.album.artist},Album Name: ${data.album.name}, published in: ${data.album.wiki.published}`;
+
+  
+  card.appendChild(container);
+
+
+  document.body.appendChild(card);
+})
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+
+  const apiKey2 = 'aea61c096ec9b633546fbe7f3b66e648';
+
+
+const method2 = 'artist.gettopalbums';
+
+const artist6 ="cher"
+
+
+const user6 = 'joanofarctan'; 
+
+
+const url2 = `http://ws.audioscrobbler.com/2.0/?method=${method2}&artist=${artist6}&api_key=${apiKey2}&format=json`;
+fetch(url2)
+  .then(response => response.json()) 
+  .then(data => {
+  
+
+ 
+  let card = document.getElementsByClassName('content3');
+
+
+  
+  let container = document.getElementById('container3');
+
+
+  container.textContent = `Artist name : ${data.topalbums.album[27].artist.name},Album Name:${data.topalbums.album[27].name}`;
+
+
+  card.appendChild(container);
+
+ 
+  document.body.appendChild(card);
+})
+  .catch(error => {
+    console.error('Error:', error);
+  });
+    
+
+  const apiKey4 = 'aea61c096ec9b633546fbe7f3b66e648';
+
+
+const method4 = 'artist.gettopalbums';
+
+const artist2 ="cher"
+
+
+const user3 = 'joanofarctan'; 
+
+
+const url4 = `http://ws.audioscrobbler.com/2.0/?method=${method4}&artist=${artist2}&api_key=${apiKey4}&format=json`;
+fetch(url4)
+  .then(response => response.json()) 
+  .then(data => {
+  
+
+ 
+  let card = document.getElementsByClassName('content4');
+
+
+  
+  let container = document.getElementById('container4');
+
+
+  container.textContent = `Artist name : ${data.topalbums.album[3].artist.name},Album Name:${data.topalbums.album[3].name}`;
+
+
+  card.appendChild(container);
+
+ 
+  document.body.appendChild(card);
+})
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+      
+  const apiKey5 = 'aea61c096ec9b633546fbe7f3b66e648';
+
+
+const method5 = 'artist.gettopalbums';
+
+const artist3 ="cher"
+
+
+const user4 = 'joanofarctan'; 
+
+
+const url5 = `http://ws.audioscrobbler.com/2.0/?method=${method5}&artist=${artist3}&api_key=${apiKey5}&format=json`;
+fetch(url5)
+  .then(response => response.json()) 
+  .then(data => {
+  
+
+ 
+  let card = document.getElementsByClassName('content5');
+
+
+  
+  let container = document.getElementById('container5');
+
+
+  container.textContent = `Artist name : ${data.topalbums.album[4].artist.name},Album Name:${data.topalbums.album[4].name}`;
+
+
+  card.appendChild(container);
+
+ 
+  document.body.appendChild(card);
+})
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+
+        
+  const apiKey6 = 'aea61c096ec9b633546fbe7f3b66e648';
+
+
+const method6 = 'artist.gettopalbums';
+
+const artist4 ="cher"
+
+
+const user5 = 'joanofarctan'; 
+
+
+const url6 = `http://ws.audioscrobbler.com/2.0/?method=${method6}&artist=${artist4}&api_key=${apiKey6}&format=json`;
+fetch(url6)
+  .then(response => response.json()) 
+  .then(data => {
+  
+
+ 
+  let card = document.getElementsByClassName('content6');
+
+
+  
+  let container = document.getElementById('container6');
+
+
+  container.textContent = `Artist name : ${data.topalbums.album[10].artist.name},Album Name:${data.topalbums.album[10].name}`;
+
+
+  card.appendChild(container);
+
+ 
+  document.body.appendChild(card);
+})
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+
+  const apiKey7 = 'aea61c096ec9b633546fbe7f3b66e648';
+
+
+const method7 = 'artist.gettopalbums';
+
+const artist7 ="cher"
+
+
+const user7 = 'joanofarctan'; 
+
+
+const url7 = `http://ws.audioscrobbler.com/2.0/?method=${method7}&artist=${artist7}&api_key=${apiKey7}&format=json`;
+fetch(url7)
+  .then(response => response.json()) 
+  .then(data => {
+  
+
+ 
+  let card = document.getElementsByClassName('content7');
+
+
+  
+  let container = document.getElementById('container7');
+
+
+  container.textContent = `Artist name : ${data.topalbums.album[41].artist.name},Music Name:${data.topalbums.album[41].name}`;
+
+
+  card.appendChild(container);
+
+ 
+  document.body.appendChild(card);
+})
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+  
+        </script>
+</html>
